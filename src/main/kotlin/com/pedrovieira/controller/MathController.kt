@@ -1,8 +1,8 @@
 package com.pedrovieira.controller
 
+import com.pedrovieira.utils.isNumeric
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 import java.util.concurrent.atomic.AtomicLong
 
@@ -13,10 +13,14 @@ class MathController {
 
     @RequestMapping("/sum/{numberOne}/{numberTwo}")
     fun sum(
-        @PathVariable(value ="numberOne") numberOne: String,
-        @PathVariable(value ="numberTwo") numberTwo: String
+        @PathVariable(value ="numberOne") numberOne: String?,
+        @PathVariable(value ="numberTwo") numberTwo: String?
     ): Double {
-        val sum = numberOne.toDouble().plus(numberTwo.toDouble())
-        return sum;
+        println(numberOne)
+        println(numberTwo)
+
+        if(!isNumeric(numberOne) || !isNumeric(numberTwo)) throw Exception()
+
+        return numberOne!!.toDouble().plus(numberTwo!!.toDouble())
     }
 }
