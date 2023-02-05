@@ -1,5 +1,6 @@
 package com.pedrovieira.controller
 
+import com.pedrovieira.exceptions.UnsupportedMathOperationException
 import com.pedrovieira.utils.isNumeric
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
@@ -19,7 +20,7 @@ class MathController {
         println(numberOne)
         println(numberTwo)
 
-        if(!isNumeric(numberOne) || !isNumeric(numberTwo)) throw Exception()
+        if(!isNumeric(numberOne) || !isNumeric(numberTwo)) throw UnsupportedMathOperationException("Please set a numeric value. Ex: 1.0")
 
         return numberOne!!.toDouble().plus(numberTwo!!.toDouble())
     }
