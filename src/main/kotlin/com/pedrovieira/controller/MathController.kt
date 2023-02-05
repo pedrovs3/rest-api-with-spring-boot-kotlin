@@ -20,7 +20,9 @@ class MathController {
         println(numberOne)
         println(numberTwo)
 
-        if(!isNumeric(numberOne) || !isNumeric(numberTwo)) throw UnsupportedMathOperationException("Please set a numeric value. Ex: 1.0")
+        if(!isNumeric(numberOne) || !isNumeric(numberTwo)) {
+            throw UnsupportedMathOperationException("Please set a numeric value. Ex: 1.0")
+        }
 
         return numberOne!!.toDouble().plus(numberTwo!!.toDouble())
     }
